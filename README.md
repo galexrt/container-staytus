@@ -5,6 +5,13 @@ staytus docker image without mysql server
 
 ## Available Env Vars (from Staytus)
 
+* `DB_ADAPTER` (Default: `mysql2`)
+* `DB_POOL` (Default: `5`)
+* `DB_HOST` (Default: `127.0.0.1`)
+* `DB_DATABASE` (Default: `staytus`)
+* `DB_USER` (Default: `staytus`)
+* `DB_PASSWORD` (Default: ``) 
+
 * `STAYTUS_SMTP_HOSTNAME`
 * `STAYTUS_SMTP_USERNAME`
 * `STAYTUS_SMTP_PASSWORD`
