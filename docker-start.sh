@@ -4,7 +4,7 @@ cd /opt/staytus
 
 if [ ! -f /opt/staytus/persisted/config/database.yml ]; then
   mysql -u "$MYSQL_USER" -p "$MYSQL_PASSWORD"
-  echo "CREATE DATABASE staytus CHARSET utf8 COLLATE utf8_unicode_ci" | mysql -u root -p$RANDOM_PASSWORD
+  echo "CREATE DATABASE staytus CHARSET utf8 COLLATE utf8_unicode_ci" | mysql -u root -p$RANDOM_PASSWORD || true
 
   cp -f /opt/staytus/config/database.example.yml /opt/staytus/config/database.yml
   sed -i "s/username:.*/username: $MYSQL_USER/" /opt/staytus/config/database.yml
