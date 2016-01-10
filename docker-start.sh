@@ -7,8 +7,12 @@ if [ ! -f /opt/staytus/persisted/config/database.yml ]; then
   echo "CREATE DATABASE staytus CHARSET utf8 COLLATE utf8_unicode_ci" | mysql -u root -p$RANDOM_PASSWORD || true
 
   cp -f /opt/staytus/config/database.example.yml /opt/staytus/config/database.yml
-  sed -i "s/username:.*/username: $MYSQL_USER/" /opt/staytus/config/database.yml
-  sed -i "s|password:.*|password: $MYSQL_PASSWORD|" /opt/staytus/config/database.yml
+  sed -i "s/adapter:.*/adapter: $DB_ADAPTER/" /opt/staytus/config/database.yml
+  sed -i "s/username:.*/username: $DB_USER/" /opt/staytus/config/database.yml
+  sed -i "s|password:.*|password: $DB_PASSWORD|" /opt/staytus/config/database.yml
+  sed -i "s|database:.*|database: $DB_DATABASE|" /opt/staytus/config/database.yml
+  sed -i "s|host:.*|host: $DB_HOST|" /opt/staytus/config/database.yml
+  sed -i "s|pool:.*|pool: $DB_POOL|" /opt/staytus/config/database.yml
 
   # Copy the config to persist it, and later copy back on each start, to persist this config file 
   # without persisting all of /config (which is mostly app code)
