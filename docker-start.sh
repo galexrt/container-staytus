@@ -6,6 +6,8 @@ DB_HOST="${DB_HOST:-127.0.0.1}"
 DB_USER="${DB_USER:-staytus}"
 DB_DATABASE="${DB_DATABASE:-staytus}"
 
+cp -f /opt/staytus/config/database.example.yml /opt/staytus/config/database.yml
+
 if [ ! -z "$DB_ADAPTER" ]; then
     sed -i "s/adapter:.*/adapter: \"$DB_ADAPTER\"/" /opt/staytus/config/database.yml
 fi
