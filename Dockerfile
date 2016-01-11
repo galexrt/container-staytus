@@ -5,6 +5,8 @@ USER root
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
+ADD docker-start.sh /docker-start.sh
+
 RUN apt-get update && \
     # Instal node as the JS engine for uglifier
     apt-get install -y nodejs && \
@@ -15,6 +17,6 @@ RUN apt-get update && \
     cd /opt/staytus && \
     bundle install --deployment --without development:test
 
-ENTRYPOINT /opt/staytus/docker-start.sh
+ENTRYPOINT /docker-start.sh
 
 EXPOSE 5000

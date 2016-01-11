@@ -25,6 +25,8 @@ if [ ! -z "$DB_DATABASE" ]; then
     sed -i "s|database:.*|database: $DB_DATABASE|" /opt/staytus/config/database.yml
 fi
 
+cd /opt/staytus || exit 1
+
 bundle exec rake staytus:build staytus:upgrade
 
 exec bundle exec foreman start
