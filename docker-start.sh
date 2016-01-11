@@ -6,8 +6,6 @@ DB_HOST="${DB_HOST:-127.0.0.1}"
 DB_USER="${DB_USER:-staytus}"
 DB_DATABASE="${DB_DATABASE:-staytus}"
 
-echo "CREATE DATABASE staytus CHARSET utf8 COLLATE utf8_unicode_ci" | mysql -u root -p$DB_PASSWORD || true
-
 if [ ! -z "$DB_ADAPTER" ]; then
     sed -i "s/adapter:.*/adapter: \"$DB_ADAPTER\"/" /opt/staytus/config/database.yml
 fi
