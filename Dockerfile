@@ -15,10 +15,6 @@ RUN apt-get update && \
     cd /opt/staytus && \
     bundle install --deployment --without development:test
 
-# Persists copies of other relevant files (DB config, custom themes). Contents of this are copied 
-# to the relevant places each time the container is started
-VOLUME /opt/staytus/persisted
-
 ENTRYPOINT /opt/staytus/docker-start.sh
 
 EXPOSE 5000
