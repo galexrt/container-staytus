@@ -29,4 +29,4 @@ fi
 
 bundle exec rake staytus:build staytus:upgrade
 
-bundle exec foreman start
+exec bundle exec foreman start
