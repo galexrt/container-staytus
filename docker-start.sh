@@ -9,6 +9,8 @@ DB_DATABASE="${DB_DATABASE:-staytus}"
 
 cp -f /opt/staytus/config/database.example.yml /opt/staytus/config/database.yml
 
+echo "CREATE DATABASE staytus CHARSET utf8 COLLATE utf8_unicode_ci;" | mysql -h"$DB_HOST" -u "$DB_USER" -p"$DB_PASSWORD" || true
+
 sed -i "s/adapter:.*/adapter: \"$DB_ADAPTER\"/" /opt/staytus/config/database.yml
 sed -i "s|pool:.*|pool: $DB_POOL|" /opt/staytus/config/database.yml
 sed -i "s|host:.*|host: \"$DB_HOST\"|" /opt/staytus/config/database.yml
