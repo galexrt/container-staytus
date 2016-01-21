@@ -6,6 +6,7 @@ USER root
 ENV DEBIAN_FRONTEND="noninteractive"
 
 ADD docker-start.sh /docker-start.sh
+ADD . /opt/staytus/
 
 RUN chmod 755 docker-start.sh && \
     apt-get update && \
@@ -13,8 +14,6 @@ RUN chmod 755 docker-start.sh && \
     apt-get install -y nodejs && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    mkdir -p /opt/staytus && \
-    git clone https://github.com/adamcooke/staytus.git /opt/staytus && \
     cd /opt/staytus && \
     bundle install --deployment --without development:test
 
