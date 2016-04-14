@@ -5,18 +5,19 @@ USER root
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
-ADD docker-start.sh /docker-start.sh
-ADD . /opt/staytus/
+ADD entrypoint.sh /entrypoint.sh
 
-RUN chmod 755 docker-start.sh && \
+RUN chmod 755 entrypoint.sh && \
     apt-get update && \
     # Instal node as the JS engine for uglifier
     apt-get install -y nodejs && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    mkdir -p /opt/staytus && \
+    git clone https://github.com/adamcooke/staytus.git /opt/staytus && \
     cd /opt/staytus && \
-    bundle install --deployment --without development:test
+    bundle install --deployment --without development:test && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENTRYPOINT "/docker-start.sh"
+ENTRYPOINT "/entrypoint.sh"
 
 EXPOSE 5000
