@@ -7,7 +7,7 @@ staytus docker image without mysql server
 
 ### DB Configuration:
 Database setup instructions here https://github.com/adamcooke/staytus#instructions
-`
+
 * `DB_ADAPTER` (Default: `mysql2`)
 * `DB_POOL` (Default: `5`)
 * `DB_HOST` (Default: `127.0.0.1`)
