@@ -14,7 +14,7 @@ After running the commands, open 127.0.0.1:5000 (or the server IP (make sure the
 
 ## Database Configuration
 Database setup instructions here https://github.com/adamcooke/staytus#instructions
-`
+
 * `DB_ADAPTER` (Default: `mysql2`)
 * `DB_POOL` (Default: `5`)
 * `DB_HOST` (Default: `127.0.0.1`)
