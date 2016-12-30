@@ -1,6 +1,10 @@
 # docker-staytus
 [![](https://images.microbadger.com/badges/image/galexrt/staytus.svg)](https://microbadger.com/images/galexrt/staytus "Get your own image badge on microbadger.com")
 
+[![Docker Repository on Quay.io](https://quay.io/repository/galexrt/staytus/status "Docker Repository on Quay.io")](https://quay.io/repository/galexrt/zulip)
+* [**Quay.io**](https://quay.io/repository/galexrt/staytus)
+* [**Docker Hub**](https://hub.docker.com/r/galexrt/staytus)
+
 [adamcooke/staytus](https://github.com/adamcooke/staytus) as a Docker image without the MySQL server.
 
 # Starting Staytus
