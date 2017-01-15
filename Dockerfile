@@ -10,12 +10,15 @@ ADD entrypoint.sh /entrypoint.sh
 RUN chmod 755 entrypoint.sh && \
     apt-get update && \
     # Instal node as the JS engine for uglifier
-    apt-get install -y nodejs && \
-    apt-get clean && \
-    mkdir -p /opt/staytus && \
+    apt-get install -y nodejs libgmp3-dev
+
+RUN mkdir -p /opt/staytus && \
     git clone https://github.com/adamcooke/staytus.git /opt/staytus && \
     cd /opt/staytus && \
-    bundle install --deployment --without development:test && \
+    bundle update json && \
+    bundle install --deployment --without development:test
+
+RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENTRYPOINT "/entrypoint.sh"
