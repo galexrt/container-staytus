@@ -5,12 +5,8 @@ USER root
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
-ADD entrypoint.sh /entrypoint.sh
-
-RUN chmod 755 entrypoint.sh && \
-    apt-get update && \
-    # Instal node as the JS engine for uglifier
-    apt-get install -y nodejs libgmp3-dev
+RUN apt-get -q update && \
+    apt-get -q install -y nodejs libgmp3-dev
 
 RUN mkdir -p /opt/staytus && \
     git clone https://github.com/adamcooke/staytus.git /opt/staytus && \
@@ -21,6 +17,8 @@ RUN mkdir -p /opt/staytus && \
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-ENTRYPOINT "/entrypoint.sh"
+ADD entrypoint.sh /entrypoint.sh
 
 EXPOSE 5000
+
+ENTRYPOINT "/entrypoint.sh"

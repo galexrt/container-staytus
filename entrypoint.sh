@@ -18,7 +18,7 @@ sed -i "s/username:.*/username: \"$DB_USER\"/" /opt/staytus/config/database.yml
 sed -i "s|password:.*|password: \"$DB_PASSWORD\"|" /opt/staytus/config/database.yml
 sed -i "s|database:.*|database: $DB_DATABASE|" /opt/staytus/config/database.yml
 
-cd /opt/staytus || exit 1
+cd /opt/staytus || { echo "Can't access data directory"; exit 1; }
 
 bundle exec rake staytus:build staytus:upgrade
 
