@@ -25,7 +25,13 @@ For the Docker Staytus image to work, you'll need to start a MySQL server (or co
 The commands below start a MariaDB and the starts the Staytus container with the link to the database container.
 ```
 docker run \
---name staytus-mariadb -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mariadb:latest
+    -d \
+    --name staytus-mariadb \
+    -e MYSQL_ROOT_PASSWORD=my-secret-pw \
+    -e MYSQL_DATABASE=staytus \
+    -e MYSQL_USER=staytus \
+    -e MYSQL_PASSWORD=staytus \
+    mariadb:latest
 ```
 With link to the MariaDB database container:
 ```
