@@ -1,7 +1,7 @@
 # docker-staytus
 [![](https://images.microbadger.com/badges/image/galexrt/staytus.svg)](https://microbadger.com/images/galexrt/staytus "Get your own image badge on microbadger.com")
 
-[![Docker Repository on Quay.io](https://quay.io/repository/galexrt/staytus/status "Docker Repository on Quay.io")](https://quay.io/repository/galexrt/zulip)
+[![Docker Repository on Quay.io](https://quay.io/repository/galexrt/staytus/status "Docker Repository on Quay.io")](https://quay.io/repository/galexrt/staytus)
 
 Image available from:
 * [**Quay.io**](https://quay.io/repository/galexrt/staytus)
