@@ -22,6 +22,6 @@ RUN git clone https://github.com/adamcooke/staytus.git /opt/staytus/staytus && \
 
 COPY entrypoint.sh /entrypoint.sh
 
-EXPOSE 5000
+EXPOSE 8787
 
 ENTRYPOINT "/entrypoint.sh"

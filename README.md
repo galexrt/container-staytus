@@ -33,6 +33,7 @@ docker run \
     -e MYSQL_PASSWORD=staytus \
     mariadb:latest
 ```
+The image runs on port 8787
 With link to the MariaDB database container:
 ```
 docker run \
