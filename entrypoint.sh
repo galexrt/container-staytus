@@ -14,15 +14,14 @@ fi
 
 echo "CREATE DATABASE staytus CHARSET utf8 COLLATE utf8_unicode_ci;" | mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASSWORD" || { echo "=> Issues creating database staytus, can be ignored when the database already exists."; true; }
 
-sed -i "s|adapter:.*/adapter: \"$DB_ADAPTER\"|" /opt/staytus/staytus/config/database.yml
+sed -i "s|adapter:.*|adapter: \"$DB_ADAPTER\"|" /opt/staytus/staytus/config/database.yml
 sed -i "s|pool:.*|pool: $DB_POOL|" /opt/staytus/staytus/config/database.yml
 sed -i "s|host:.*|host: \"$DB_HOST\"|" /opt/staytus/staytus/config/database.yml
 sed -i "s|username:.*|username: \"$DB_USER\"|" /opt/staytus/staytus/config/database.yml
 sed -i "s|password:.*|password: \"$DB_PASSWORD\"|" /opt/staytus/staytus/config/database.yml
 sed -i "s|database:.*|database: \"$DB_DATABASE\"|" /opt/staytus/staytus/config/database.yml
 
-cd /opt/staytus || { echo "Can't access data directory"; exit 1; }
-
+set -ex
 bundle exec rake staytus:build staytus:upgrade
 
-exec procodile start
+exec procodile start -f
