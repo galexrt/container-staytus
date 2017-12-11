@@ -10,6 +10,7 @@ RUN apt-get -q update && \
     mkdir -p /opt/staytus && \
     git clone https://github.com/adamcooke/staytus.git /opt/staytus && \
     cd /opt/staytus && \
+    git checkout stable && \
     bundle update json && \
     bundle install --deployment --without development:test && \
     apt-get clean && \
