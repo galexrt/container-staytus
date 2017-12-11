@@ -7,19 +7,22 @@ DB_USER="${DB_USER:-staytus}"
 DB_PASSWORD="${DB_PASSWORD:-staytus}"
 DB_DATABASE="${DB_DATABASE:-staytus}"
 
-cp -f /opt/staytus/config/database.example.yml /opt/staytus/config/database.yml
+cd /opt/staytus/staytus || { echo "staytus directory not found."; exit 1; }
+if [ ! -f "/opt/staytus/staytus/config/database.yml" ]; then
+    cp -f /opt/staytus/staytus/config/database.example.yml /opt/staytus/staytus/config/database.yml
+fi
 
-echo "CREATE DATABASE staytus CHARSET utf8 COLLATE utf8_unicode_ci;" | mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASSWORD" || true
+echo "CREATE DATABASE staytus CHARSET utf8 COLLATE utf8_unicode_ci;" | mysql -h "$DB_HOST" -u "$DB_USER" -p"$DB_PASSWORD" || { echo "=> Issues creating database staytus, can be ignored when the database already exists."; true; }
 
-sed -i "s/adapter:.*/adapter: \"$DB_ADAPTER\"/" /opt/staytus/config/database.yml
-sed -i "s|pool:.*|pool: $DB_POOL|" /opt/staytus/config/database.yml
-sed -i "s|host:.*|host: \"$DB_HOST\"|" /opt/staytus/config/database.yml
-sed -i "s/username:.*/username: \"$DB_USER\"/" /opt/staytus/config/database.yml
-sed -i "s|password:.*|password: \"$DB_PASSWORD\"|" /opt/staytus/config/database.yml
-sed -i "s|database:.*|database: $DB_DATABASE|" /opt/staytus/config/database.yml
+sed -i "s|adapter:.*/adapter: \"$DB_ADAPTER\"|" /opt/staytus/staytus/config/database.yml
+sed -i "s|pool:.*|pool: $DB_POOL|" /opt/staytus/staytus/config/database.yml
+sed -i "s|host:.*|host: \"$DB_HOST\"|" /opt/staytus/staytus/config/database.yml
+sed -i "s|username:.*|username: \"$DB_USER\"|" /opt/staytus/staytus/config/database.yml
+sed -i "s|password:.*|password: \"$DB_PASSWORD\"|" /opt/staytus/staytus/config/database.yml
+sed -i "s|database:.*|database: $DB_DATABASE|" /opt/staytus/staytus/config/database.yml
 
 cd /opt/staytus || { echo "Can't access data directory"; exit 1; }
 
 bundle exec rake staytus:build staytus:upgrade
 
-exec bundle exec foreman start
+exec procodile start
