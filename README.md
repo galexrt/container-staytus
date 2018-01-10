@@ -37,8 +37,8 @@ The image runs on port 8787
 With link to the MariaDB database container:
 ```
 docker run \
-    --link=mariadb:mysql \
-    -p 5000:5000 \
+    --link=staytus-mariadb:mysql \
+    -p 8787:8787 \
     --name=staytus \
     -e 'DB_HOST=mysql' \
     -e 'DB_USER=staytus' \
