@@ -45,7 +45,7 @@ docker run \
     -e 'DB_PASSWORD=staytus' \
     quay.io/galexrt/staytus
 ```
-After running the commands, open `YOUR_IP:5000` (or the server IP) in your browser to run the setup for your containerized Staytus instance.
+After running the commands, open `YOUR_IP:8787` (or the server IP) in your browser to run the setup for your containerized Staytus instance.
 
 ### Available Env Vars
 #### Database Configuration
