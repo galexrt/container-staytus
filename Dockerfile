@@ -1,5 +1,5 @@
 FROM ubuntu:16.04
-MAINTAINER Alexander Trost <galexrt@googlemail.com>
+LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
