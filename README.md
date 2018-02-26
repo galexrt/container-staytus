@@ -37,15 +37,15 @@ The image runs on port 8787
 With link to the MariaDB database container:
 ```
 docker run \
-    --link=mariadb:mysql \
-    -p 5000:5000 \
+    --link=staytus-mariadb:mysql \
+    -p 8787:8787 \
     --name=staytus \
     -e 'DB_HOST=mysql' \
     -e 'DB_USER=staytus' \
     -e 'DB_PASSWORD=staytus' \
     quay.io/galexrt/staytus
 ```
-After running the commands, open `YOUR_IP:5000` (or the server IP) in your browser to run the setup for your containerized Staytus instance.
+After running the commands, open `YOUR_IP:8787` (or the server IP) in your browser to run the setup for your containerized Staytus instance.
 
 ### Available Env Vars
 #### Database Configuration
