@@ -21,46 +21,78 @@ docker pull galexrt/staytus:latest
 ```
 
 ### Running Staytus
+
 For the Docker Staytus image to work, you'll need to start a MySQL server (or container).
-The commands below start a MariaDB and the starts the Staytus container with the link to the database container.
+The commands below creates a network, start a MariaDB and then starts the Staytus container.
+
+Create the separate network for Staytus and database:
+
+```
+docker network create staytus
+```
+
+Start the MariaDB database container:
+
 ```
 docker run \
     -d \
-    --name staytus-mariadb \
+    --name=database \
+    --net=staytus \
     -e MYSQL_ROOT_PASSWORD=my-secret-pw \
     -e MYSQL_DATABASE=staytus \
     -e MYSQL_USER=staytus \
     -e MYSQL_PASSWORD=staytus \
-    mariadb:latest
+    mariadb:10.4.4-bionic
 ```
-The image runs on port 8787
-With link to the MariaDB database container:
+
+Start the Staytus container with the environment variables pointing to the created `database` container.
+
 ```
 docker run \
-    --link=staytus-mariadb:mysql \
-    -p 8787:8787 \
     --name=staytus \
-    -e 'DB_HOST=mysql' \
+    --net=staytus \
+    -p 8787:8787 \
+    -e 'DB_HOST=database' \
     -e 'DB_USER=staytus' \
     -e 'DB_PASSWORD=staytus' \
-    quay.io/galexrt/staytus
+    quay.io/galexrt/staytus:latest
 ```
-After running the commands, open `YOUR_IP:8787` (or the server IP) in your browser to run the setup for your containerized Staytus instance.
+
+After running the commands, open `127.0.0.1:8787`, `YOUR_IP:8787` (or the server IP when Docker is running on a server) in your browser to run the setup for your containerized Staytus instance.
+
+#### Manual configuration
+
+If you want to manually configure Staytus, you can point a volume to `/opt/staytus/staytus/config/`  and put the `database.yaml` config in that volume yourself.
+
+```
+docker run \
+[...]
+    -e 'AUTO_CONF=false' \
+    -v /opt/docker/staytus/config:/opt/staytus/staytus/config:ro \
+[...]
+quay.io/galexrt/staytus:lastest
+```
 
 ### Available Env Vars
 #### Database Configuration
-Database setup instructions here https://github.com/adamcooke/staytus#instructions
+
+> **NOTE**
+>
+> Database setup instructions here https://github.com/adamcooke/staytus#instructions
 
 You can add the following variables as env vars to your Docker run command:
+
+* `AUTO_CONF` (Default: `true`) - Enable or disable the `database.yaml` configuration, based on the upcoming `DB_*` variables.
 * `DB_ADAPTER` (Default: `mysql2`)
 * `DB_POOL` (Default: `5`)
-* `DB_HOST` (Default: `127.0.0.1`)
+* `DB_HOST` (Default: `database`)
 * `DB_DATABASE` (Default: `staytus`)
 * `DB_USER` (Default: `staytus`)
 * `DB_PASSWORD` (Default: empty)
 
 #### SMTP Configuration (from Staytus)
 You can add the following variables as env vars to your Docker run command:
+
 * `STAYTUS_SMTP_HOSTNAME`
 * `STAYTUS_SMTP_USERNAME`
 * `STAYTUS_SMTP_PASSWORD`
