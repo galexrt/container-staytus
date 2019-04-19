@@ -49,6 +49,7 @@ Start the Staytus container with the environment variables pointing to the creat
 
 ```
 docker run \
+    -d \
     --name=staytus \
     --net=staytus \
     -p 8787:8787 \
