@@ -10,6 +10,11 @@ Image available from:
 [adamcooke/staytus](https://github.com/adamcooke/staytus) as a Docker image without the MySQL server.
 
 ## Usage
+### Versions
+
+* `latest` image tag points to the latest `stable` branch of Staytus repository.
+* `vmaster` image tag points to the `master` branch of Staytus repository.
+
 ### Pulling the image
 From quay.io:
 ```
