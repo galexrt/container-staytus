@@ -1,27 +1,33 @@
 # docker-staytus
+
 [![](https://images.microbadger.com/badges/image/galexrt/staytus.svg)](https://microbadger.com/images/galexrt/staytus "Get your own image badge on microbadger.com")
 
 [![Docker Repository on Quay.io](https://quay.io/repository/galexrt/staytus/status "Docker Repository on Quay.io")](https://quay.io/repository/galexrt/staytus)
 
 Image available from:
+
 * [**Quay.io**](https://quay.io/repository/galexrt/staytus)
 * [**Docker Hub**](https://hub.docker.com/r/galexrt/staytus)
 
 [adamcooke/staytus](https://github.com/adamcooke/staytus) as a Docker image without the MySQL server.
 
 ## Usage
+
 ### Versions
 
 * `latest` image tag points to the latest `stable` branch of Staytus repository.
 * `vmaster` image tag points to the `master` branch of Staytus repository.
 
 ### Pulling the image
+
 From quay.io:
-```
+
+```shell
 docker pull quay.io/galexrt/staytus:latest
 ```
 Or from Docker Hub:
-```
+
+```shell
 docker pull galexrt/staytus:latest
 ```
 
@@ -32,13 +38,13 @@ The commands below creates a network, start a MariaDB and then starts the Staytu
 
 Create the separate network for Staytus and database:
 
-```
+```shell
 docker network create staytus
 ```
 
 Start the MariaDB database container:
 
-```
+```shell
 docker run \
     -d \
     --name=database \
@@ -52,7 +58,7 @@ docker run \
 
 Start the Staytus container with the environment variables pointing to the created `database` container.
 
-```
+```shell
 docker run \
     -d \
     --name=staytus \
@@ -70,7 +76,7 @@ After running the commands, open `127.0.0.1:8787`, `YOUR_IP:8787` (or the server
 
 If you want to manually configure Staytus, you can point a volume to `/opt/staytus/staytus/config/`  and put the `database.yaml` config in that volume yourself.
 
-```
+```shell
 docker run \
 [...]
     -e 'AUTO_CONF=false' \
@@ -80,6 +86,7 @@ quay.io/galexrt/staytus:lastest
 ```
 
 ### Available Env Vars
+
 #### Database Configuration
 
 > **NOTE**
@@ -97,6 +104,7 @@ You can add the following variables as env vars to your Docker run command:
 * `DB_PASSWORD` (Default: empty)
 
 #### SMTP Configuration (from Staytus)
+
 You can add the following variables as env vars to your Docker run command:
 
 * `STAYTUS_SMTP_HOSTNAME`
