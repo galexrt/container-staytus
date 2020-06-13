@@ -1,16 +1,18 @@
 FROM ubuntu:16.04
 LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
-ENV DEBIAN_FRONTEND="noninteractive" STAYTUS_VERSION="stable" TZ="Etc/UTC" TINI_VERSION="v0.18.0"
+ARG STAYTUS_VERSION="stable"
+ENV DEBIAN_FRONTEND="noninteractive" TZ="Etc/UTC" TINI_VERSION="v0.19.0"
 
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 
 RUN chmod +x /tini && \
     apt-get -q update && \
-    apt-get -q install -y tzdata ruby ruby-dev ruby-json nodejs git build-essential libmysqlclient-dev mysql-client && \
+    apt-get -q install -y tzdata ruby ruby-dev ruby-json nodejs git build-essential \
+        libmysqlclient-dev mysql-client && \
     ln -fs "/usr/share/zoneinfo/${TZ}" /etc/localtime && \
     gem update --system && \
-    gem install bundler procodile && \
+    gem install bundler:1.13.6 procodile json:1.8.3 && \
     mkdir -p /opt/staytus && \
     useradd -r -d /opt/staytus -m -s /bin/bash staytus && \
     chown staytus:staytus /opt/staytus && \

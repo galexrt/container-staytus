@@ -15,19 +15,19 @@ Image available from:
 
 ### Versions
 
-* `latest` image tag points to the latest `stable` branch of Staytus repository.
-* `vmaster` image tag points to the `master` branch of Staytus repository.
+* `latest` image tags are build from the latest `stable` branch of Staytus repository (built monthly).
+* `vstable-*` image tag points to the `stable` branch of Staytus repository (built monthly).
 
 ### Pulling the image
 
 From quay.io:
 
-```shell
+```console
 docker pull quay.io/galexrt/staytus:latest
 ```
 Or from Docker Hub:
 
-```shell
+```console
 docker pull galexrt/staytus:latest
 ```
 
@@ -38,13 +38,13 @@ The commands below creates a network, start a MariaDB and then starts the Staytu
 
 Create the separate network for Staytus and database:
 
-```shell
+```console
 docker network create staytus
 ```
 
 Start the MariaDB database container:
 
-```shell
+```console
 docker run \
     -d \
     --name=database \
@@ -58,7 +58,7 @@ docker run \
 
 Start the Staytus container with the environment variables pointing to the created `database` container.
 
-```shell
+```console
 docker run \
     -d \
     --name=staytus \
@@ -76,7 +76,7 @@ After running the commands, open `127.0.0.1:8787`, `YOUR_IP:8787` (or the server
 
 If you want to manually configure Staytus, you can point a volume to `/opt/staytus/staytus/config/`  and put the `database.yaml` config in that volume yourself.
 
-```shell
+```console
 docker run \
 [...]
     -e 'AUTO_CONF=false' \
@@ -90,6 +90,8 @@ quay.io/galexrt/staytus:lastest
 #### Database Configuration
 
 > **NOTE**
+>
+> TL;DR Create a database with `CHARSET utf8mb4` and `COLLATE utf8mb4_unicode_ci`.
 >
 > Database setup instructions here https://github.com/adamcooke/staytus#instructions
 
