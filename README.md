@@ -1,34 +1,33 @@
 # docker-staytus
 
-[![](https://images.microbadger.com/badges/image/galexrt/staytus.svg)](https://microbadger.com/images/galexrt/staytus "Get your own image badge on microbadger.com")
-
-[![Docker Repository on Quay.io](https://quay.io/repository/galexrt/staytus/status "Docker Repository on Quay.io")](https://quay.io/repository/galexrt/staytus)
+[adamcooke/staytus](https://github.com/adamcooke/staytus) as a Docker image without the MySQL server.
 
 Image available from:
 
-* [**Quay.io**](https://quay.io/repository/galexrt/staytus)
-* [**Docker Hub**](https://hub.docker.com/r/galexrt/staytus)
+* [Quay.io](https://quay.io/repository/galexrt/staytus)
+* [GHCR.io](https://github.com/users/galexrt/packages/container/package/container-ts3server)
+* [**DEPRECATED** Docker Hub](https://hub.docker.com/r/galexrt/staytus)
+  * Docker Hub has been deprecated as of **18.09.2021**!
 
-[adamcooke/staytus](https://github.com/adamcooke/staytus) as a Docker image without the MySQL server.
+Container Image Tags:
+
+* `main` - Latest build of the `main` branch.
+* `vx.y.z` - Latest build of the application (updated in-sync with the date container image tags).
+* `vx.y.z-YYYYmmdd-HHMMSS-NNN` - Latest build of the application with date of the build.
 
 ## Usage
 
-### Versions
-
-* `latest` image tags are build from the latest `stable` branch of Staytus repository (built monthly).
-* `vstable-*` image tag points to the `stable` branch of Staytus repository (built monthly).
-
 ### Pulling the image
 
-From quay.io:
+From Quay.io:
 
 ```console
-docker pull quay.io/galexrt/staytus:latest
+docker pull quay.io/galexrt/staytus:main
 ```
-Or from Docker Hub:
+Or from GHCR.io:
 
 ```console
-docker pull galexrt/staytus:latest
+docker pull ghcr.io/galexrt/staytus:main
 ```
 
 ### Running Staytus
@@ -67,7 +66,7 @@ docker run \
     -e 'DB_HOST=database' \
     -e 'DB_USER=staytus' \
     -e 'DB_PASSWORD=staytus' \
-    quay.io/galexrt/staytus:latest
+    quay.io/galexrt/staytus:main
 ```
 
 After running the commands, open `127.0.0.1:8787`, `YOUR_IP:8787` (or the server IP when Docker is running on a server) in your browser to run the setup for your containerized Staytus instance.
@@ -81,8 +80,8 @@ docker run \
 [...]
     -e 'AUTO_CONF=false' \
     -v /opt/docker/staytus/config:/opt/staytus/staytus/config:ro \
-[...]
-quay.io/galexrt/staytus:lastest
+    [...]
+    quay.io/galexrt/staytus:lastest
 ```
 
 ### Available Env Vars
