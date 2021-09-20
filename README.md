@@ -1,6 +1,6 @@
-# docker-staytus
+# container-staytus
 
-[adamcooke/staytus](https://github.com/adamcooke/staytus) as a Docker image without the MySQL server.
+[adamcooke/staytus](https://github.com/adamcooke/staytus) as a Container Image without the MySQL server.
 
 Image available from:
 
