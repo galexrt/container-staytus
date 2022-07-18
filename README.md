@@ -5,7 +5,7 @@
 Image available from:
 
 * [Quay.io](https://quay.io/repository/galexrt/staytus)
-* [GHCR.io](https://github.com/users/galexrt/packages/container/package/container-ts3server)
+* [GHCR.io](https://github.com/galexrt/container-staytus/pkgs/container/staytus)
 * [**DEPRECATED** Docker Hub](https://hub.docker.com/r/galexrt/staytus)
   * Docker Hub has been deprecated as of **18.09.2021**!
 
