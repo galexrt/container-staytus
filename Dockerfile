@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM docker.io/library/ubuntu:16.04
 
 ARG BUILD_DATE="N/A"
 ARG REVISION="N/A"
